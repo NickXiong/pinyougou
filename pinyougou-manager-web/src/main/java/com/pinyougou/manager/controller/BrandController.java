@@ -69,7 +69,6 @@ public class BrandController {
 
     @RequestMapping("/search")
     public PageResult search(@RequestBody TbBrand brand, int page, int size){
-        System.out.println(brand==null?"--------------null------------":"------------------"+brand.getFirstChar());
         return brandService.findPage(brand,page,size);
     }
 }
