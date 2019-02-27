@@ -29,4 +29,6 @@ public interface BrandService {
 
     public void update(TbBrand brand);
 
+    public void delele(Long[] ids);
+
 }

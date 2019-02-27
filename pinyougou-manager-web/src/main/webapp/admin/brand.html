@@ -78,6 +78,33 @@
 			            $scope.entity = response;
 					}
 				);
+			};
+
+			//定义存放删除元素id的数组
+			$scope.delIds=[];
+
+			//删除元素id数组 维护
+			$scope.updateSelectIds=function($event,id){
+				if($event.target.checked){
+				    $scope.delIds.push(id);
+				}else{
+				    var index = $scope.delIds.indexOf(id);
+				    $scope.delIds.splice(index,1);
+				}
+			};
+
+			//删除品牌
+			$scope.dele=function(){
+			    $http.get("../brand/delete.do?ids="+$scope.delIds).success(
+			        function(response){
+                        if(response.success){
+                            $scope.reloadList();
+                            $scope.delIds=[];
+                        }else{
+                            alter(response.message)
+                        }
+					}
+				);
 			}
         });
 	</script>
@@ -99,7 +126,7 @@
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ng-click="entity={}"><i class="fa fa-file-o"></i> 新建</button>
-                                        <button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>           
+                                        <button type="button" class="btn btn-default" title="删除" ng-click="dele()"><i class="fa fa-trash-o"></i> 删除</button>
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
                                 </div>
@@ -126,7 +153,7 @@
 			                      </thead>
 			                      <tbody>
 								      <tr ng-repeat="brand in list">
-			                              <td><input  type="checkbox" ></td>
+			                              <td><input  type="checkbox" ng-click="updateSelectIds($event,brand.id)"></td>
 										  <td>{{brand.id}}</td>
 										  <td>{{brand.name}}</td>
 										  <td>{{brand.firstChar}}</td>
@@ -137,7 +164,7 @@
 			                      </tbody>
 			                  </table>
 			                  <!--数据列表/-->
-							 
+							 	{{delIds}}
                         </div>
                         <!-- 数据表格 /-->
 
