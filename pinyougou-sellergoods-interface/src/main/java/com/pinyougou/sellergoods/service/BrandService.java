@@ -25,4 +25,8 @@ public interface BrandService {
 
     public void save(TbBrand brand);
 
+    public TbBrand findOne(Long id);
+
+    public void update(TbBrand brand);
+
 }
