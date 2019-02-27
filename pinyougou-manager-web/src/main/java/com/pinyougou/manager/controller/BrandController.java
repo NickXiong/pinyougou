@@ -7,6 +7,7 @@ import entity.PageResult;
 import entity.Result;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -64,5 +65,11 @@ public class BrandController {
             e.printStackTrace();
             return new Result(false,"删除失败");
         }
+    }
+
+    @RequestMapping("/search")
+    public PageResult search(@RequestBody TbBrand brand, int page, int size){
+        System.out.println(brand==null?"--------------null------------":"------------------"+brand.getFirstChar());
+        return brandService.findPage(brand,page,size);
     }
 }
