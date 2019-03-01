@@ -98,4 +98,11 @@ app.controller('typeTemplateController' ,function($scope,$controller,typeTemplat
 		)
 	}
 
+	$scope.addTableRow=function(){
+		$scope.entity.customAttributeItems.push({});
+	}
+
+	$scope.deleTableRow=function(index){
+		$scope.entity.customAttributeItems.splice(index,1)
+	}
 });	
