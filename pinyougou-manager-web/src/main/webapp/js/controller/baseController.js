@@ -18,15 +18,15 @@ app.controller('baseController',function($scope){
 
 
     //定义存放删除元素id的数组
-    $scope.delIds=[];
+    $scope.selectIds=[];
 
     //删除元素id数组 维护
     $scope.updateSelectIds=function($event,id){
         if($event.target.checked){
-            $scope.delIds.push(id);
+            $scope.selectIds.push(id);
         }else{
             var index = $scope.delIds.indexOf(id);
-            $scope.delIds.splice(index,1);
+            $scope.selectIds.splice(index,1);
         }
     };
 
