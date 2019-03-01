@@ -76,5 +76,15 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 			}			
 		);
 	}
-    
+
+
+    $scope.entity={specification:{},specificationOptionList:[]};
+
+	$scope.addTableRow=function(){
+		$scope.entity.specificationOptionList.push({});
+	}
+
+    $scope.deleTableRow=function(index){
+        $scope.entity.specificationOptionList.splice(index,1);
+    }
 });	
